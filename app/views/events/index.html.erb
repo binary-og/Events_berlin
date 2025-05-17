@@ -1,0 +1,12 @@
+<h1>All Events</h1>
+
+<%= link_to 'Create New Event', new_event_path %>
+
+<ul>
+  <% @events.each do |event| %>
+    <li>
+      <strong><%= link_to event.name, event_path(event) %></strong>
+      on <%= event.date.strftime('%B %d, %Y') %> at <%= event.location %>
+    </li>
+  <% end %>
+</ul>

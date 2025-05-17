@@ -1,0 +1,29 @@
+<h1><%= @event.name %></h1>
+<p><strong>Date:</strong> <%= @event.date.strftime('%B %d, %Y') %></p>
+<p><strong>Location:</strong> <%= @event.location %></p>
+<p><strong>Created by:</strong> <%= @event.creator.email %></p>
+
+<h3>Attendees:</h3>
+<ul>
+  <% @event.attendees.each do |attendee| %>
+    <li><%= attendee.email %></li>
+  <% end %>
+</ul>
+
+<% if user_signed_in? %>
+  <% if @event.attendees.include?(current_user) %>
+    <%= button_to 'Leave Event', attending_path(event_id: @event.id), method: :delete %>
+  <% elsif !@event.private? || @event.invitees.include?(current_user) %>
+    <%= button_to 'Attend Event', attendings_path(event_id: @event.id), method: :post %>
+  <% else %>
+    <p>This event is private. You need an invitation to attend.</p>
+
+  <% end %>
+<% end %>
+
+<%= link_to 'Back to Events', events_path %>
+<%= link_to 'Edit Event', edit_event_path(@event) %>
+<%= link_to 'Delete Event', event_path(@event), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Back to Home', root_path %>
+<%# app/views/events/show.html.erb %>
+<%# This file is responsible for displaying the details of a specific event %>
