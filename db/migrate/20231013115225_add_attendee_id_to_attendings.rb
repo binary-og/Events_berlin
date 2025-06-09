@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddAttendeeIdToAttendings < ActiveRecord::Migration[7.0]
   def change
     add_reference :attendings, :attendee, index: true

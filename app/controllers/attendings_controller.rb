@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AttendingsController < ApplicationController
   before_action :authenticate_user!
 
@@ -10,9 +12,7 @@ class AttendingsController < ApplicationController
       return
     end
 
-    unless event.attendees.include?(current_user)
-      event.attendees << current_user
-    end
+    event.attendees << current_user unless event.attendees.include?(current_user)
 
     redirect_to event, notice: 'You are now attending this event.'
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddUserInviteeToInvites < ActiveRecord::Migration[7.0]
   def change
     add_reference :invites, :invitee, index: true
