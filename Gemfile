@@ -59,6 +59,12 @@ gem 'devise', '~> 4.9', '>= 4.9.3'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+
+  gem 'rubocop', require: false          # Ruby linter
+  gem 'rubocop-rails', require: false    # Rails-specific linting rules
+  gem 'brakeman', require: false         # Security scanner for Rails
+  gem 'bundler-audit', require: false    # Check for vulnerable gems
+  
 end
 
 group :development do
