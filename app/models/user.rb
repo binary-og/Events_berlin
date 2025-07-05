@@ -12,12 +12,10 @@ class User < ApplicationRecord
   has_many :received_invites, foreign_key: :invitee_id, class_name: 'Invite'
 
   # Events the user is attending
-  has_many :attendings, foreign_key: :attendee_id, dependent: :destroy
-  has_many :attended_events, through: :attendings, dependent: :destroy
-
-  # Events the user is attending
   has_many :attendings, foreign_key: :attendee_id
   has_many :attended_events, through: :attendings, source: :attended_event
+
+  # Events the user is attending
   has_many :attendances
 
   # associates user_id with creator_id in events table and allows event.creator method

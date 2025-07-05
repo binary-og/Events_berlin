@@ -7,7 +7,7 @@ class AttendingsController < ApplicationController
     event = Event.find(params[:event_id])
 
     # Invite-only logic
-    if event.private? && !event.invitees.include?(current_user)
+    if event.private? && event.invitees.exclude?(current_user)
       redirect_to event, alert: 'You are not invited to this private event.'
       return
     end

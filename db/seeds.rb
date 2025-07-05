@@ -44,10 +44,10 @@ public_event.attendees << bob
 # Invite Carol to private event
 Invite.create!(event: private_event, inviter: bob, invitee: carol)
 
-puts 'Seeded: Users + Events + Invites + Attendings'
-puts "Created #{User.count} users"
-puts "Created #{Event.count} events"
-puts "Created #{Invite.count} invites"
-puts "Created #{Attending.count} attendings"
-puts "Created #{public_event.attendees.count} attendees for public event"
-puts "Created #{private_event.invitees.count} invitees for private event"
+Rails.logger.debug 'Seeded: Users + Events + Invites + Attendings'
+Rails.logger.debug { "Created #{User.count} users" }
+Rails.logger.debug { "Created #{Event.count} events" }
+Rails.logger.debug { "Created #{Invite.count} invites" }
+Rails.logger.debug { "Created #{Attending.count} attendings" }
+Rails.logger.debug { "Created #{public_event.attendees.count} attendees for public event" }
+Rails.logger.debug { "Created #{private_event.invitees.count} invitees for private event" }

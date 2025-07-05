@@ -31,3 +31,10 @@
 
 en:
   hello: "Hello world"
+  events:
+    not_invited: "You are not invited to this private event."
+    attending: "You are now attending this event."
+    not_attending: "You are no longer attending this event."
+    created: "Event created successfully."
+    updated: "Event updated successfully."
+    deleted: "Event deleted."

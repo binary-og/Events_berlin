@@ -63,6 +63,7 @@ group :development, :test do
   gem 'brakeman', require: false         # Security scanner for Rails
   gem 'bundler-audit', require: false    # Check for vulnerable gems
   gem 'rubocop', require: false          # Ruby linter
+  gem 'rubocop-capybara', require: false # RSpec-specific linting rules
   gem 'rubocop-performance', require: false # Performance-related linting rules
   gem 'rubocop-rails', require: false # Rails-specific linting rules
 end
