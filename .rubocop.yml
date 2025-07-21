@@ -11,9 +11,11 @@ AllCops:
     - 'db/schema.rb'
     - 'node_modules/**/*'
     - 'vendor/**/*'
+    - 'config/initializers/devise.rb'
 
 Layout/LineLength:
   Max: 120
+  IgnoreComments: true
 
 Metrics/BlockLength:
   Exclude:
@@ -40,3 +42,4 @@ Layout/EmptyLinesAroundBlockBody:
 
 Style/StringLiterals:
   EnforcedStyle: single_quotes
+

@@ -7,7 +7,7 @@ class CreateEvents < ActiveRecord::Migration[7.0]
       t.text :description
       t.string :location
       t.datetime :date
-      t.boolean :private
+      t.boolean :private, null: false, default: false
 
       t.timestamps
     end

@@ -4,7 +4,7 @@ class Event < ApplicationRecord
   belongs_to :creator, class_name: 'User'
 
   # Associations for attendees
-  has_many :attendings, foreign_key: :attended_event_id
+  has_many :attendings, foreign_key: :attended_event_id, dependent: :destroy, inverse_of: :attended_event
   has_many :attendees, through: :attendings, source: :attendee
 
   # Associations for invites
