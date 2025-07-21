@@ -218,7 +218,7 @@ GEM
       date
       stringio
     public_suffix (6.0.2)
-    puma (5.6.9)
+    puma (6.6.0)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.1.16)
@@ -323,9 +323,9 @@ GEM
     stringio (3.1.7)
     thor (1.4.0)
     timeout (0.4.3)
-    turbo-rails (2.0.12)
-      actionpack (>= 6.0.0)
-      railties (>= 6.0.0)
+    turbo-rails (2.0.16)
+      actionpack (>= 7.1.0)
+      railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.1.4)
@@ -361,7 +361,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   pg (~> 1.4)
-  puma (~> 5.0)
+  puma (~> 6.0)
   rails (~> 7.1.0)
   rubocop
   rubocop-capybara
