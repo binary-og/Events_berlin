@@ -4,34 +4,27 @@ class AttendingsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @event = find_event
-    return unless can_attend?
+    event = Event.find(params[:event_id])
 
-    add_attendee
-    redirect_to @event, notice: t('attendings.attending')
+    if invite_only_blocked?(event)
+      redirect_to event, alert: t('alerts.not_invited')
+      return
+    end
+
+    event.attendees << current_user unless event.attendees.include?(current_user)
+
+    redirect_to event, notice: t('alerts.attending')
+  end
+
+  private
+
+  def invite_only_blocked?(event)
+    event.private? && event.invitees.exclude?(current_user)
   end
 
   def destroy
     event = Event.find(params[:event_id])
     event.attendees.delete(current_user)
-    redirect_to event, notice: t('attendings.not_attending')
-  end
-
-  private
-
-  def find_event
-    Event.find(params[:event_id])
-  end
-
-  def can_attend?
-    return true unless @event.private?
-    return true if @event.invitees.include?(current_user)
-
-    redirect_to @event, alert: t('attendings.not_invited')
-    false
-  end
-
-  def add_attendee
-    @event.attendees << current_user unless @event.attendees.include?(current_user)
+    redirect_to event, notice: t('alerts.not_attending')
   end
 end
