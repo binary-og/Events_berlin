@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,58 +10,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_231_013_115_338) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_13_115338) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension 'plpgsql'
+  enable_extension "plpgsql"
 
-  create_table 'attendings', force: :cascade do |t|
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.bigint 'attendee_id'
-    t.bigint 'attended_event_id'
-    t.index ['attended_event_id'], name: 'index_attendings_on_attended_event_id'
-    t.index ['attendee_id'], name: 'index_attendings_on_attendee_id'
+  create_table "attendings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "attendee_id"
+    t.bigint "attended_event_id"
+    t.index ["attended_event_id"], name: "index_attendings_on_attended_event_id"
+    t.index ["attendee_id"], name: "index_attendings_on_attendee_id"
   end
 
-  create_table 'events', force: :cascade do |t|
-    t.string 'name'
-    t.text 'description'
-    t.string 'location'
-    t.datetime 'date'
-    t.boolean 'private'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.bigint 'creator_id'
-    t.index ['creator_id'], name: 'index_events_on_creator_id'
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "location"
+    t.datetime "date"
+    t.boolean "private", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "creator_id"
+    t.index ["creator_id"], name: "index_events_on_creator_id"
   end
 
-  create_table 'invites', force: :cascade do |t|
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.bigint 'event_id'
-    t.bigint 'inviter_id'
-    t.bigint 'invitee_id'
-    t.index ['event_id'], name: 'index_invites_on_event_id'
-    t.index ['invitee_id'], name: 'index_invites_on_invitee_id'
-    t.index ['inviter_id'], name: 'index_invites_on_inviter_id'
+  create_table "invites", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "event_id"
+    t.bigint "inviter_id"
+    t.bigint "invitee_id"
+    t.index ["event_id"], name: "index_invites_on_event_id"
+    t.index ["invitee_id"], name: "index_invites_on_invitee_id"
+    t.index ["inviter_id"], name: "index_invites_on_inviter_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key 'attendings', 'events', column: 'attended_event_id'
-  add_foreign_key 'attendings', 'users', column: 'attendee_id'
-  add_foreign_key 'events', 'users', column: 'creator_id'
-  add_foreign_key 'invites', 'events'
-  add_foreign_key 'invites', 'users', column: 'invitee_id'
-  add_foreign_key 'invites', 'users', column: 'inviter_id'
+  add_foreign_key "attendings", "events", column: "attended_event_id"
+  add_foreign_key "attendings", "users", column: "attendee_id"
+  add_foreign_key "events", "users", column: "creator_id"
+  add_foreign_key "invites", "events"
+  add_foreign_key "invites", "users", column: "invitee_id"
+  add_foreign_key "invites", "users", column: "inviter_id"
 end
